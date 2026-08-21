@@ -28,4 +28,15 @@ entity Books {
     publishedDate    : DateTime;
     gender           : allgenders;
     ageGroup         : booksagegroup;
+
+    chapters : Composition of many chapters on chapters.books = $self;
+}
+
+entity chapters {
+    key ID : UUID ;
+    title : String;
+    pages : Integer;
+
+    books : Association to Books;
+
 }

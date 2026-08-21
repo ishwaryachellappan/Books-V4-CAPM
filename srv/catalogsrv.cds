@@ -1,6 +1,6 @@
 using {bookscapmv4.db as mybook} from '../db/booksmodelv4';
 
-service LibraryService @(path: 'odata/v4/Bookssrv') {
+service LibraryService  {
     @odata.draft.enabled
     entity BooksSet   as projection on mybook.Books;
 
@@ -8,6 +8,8 @@ service LibraryService @(path: 'odata/v4/Bookssrv') {
     entity GenderVH   as projection on mybook.GenderVH;
 
     entity AgegroupVH as projection on mybook.AgeGroupVH;
+
+    entity Chapters as projection on mybook.chapters;
 }
 
 
