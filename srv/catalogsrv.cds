@@ -208,3 +208,28 @@ annotate LibraryService.BooksSet with {
     )
 
 };
+
+annotate LibraryService.BooksSet with {
+
+    ageGroup @(
+        Common.ValueList : {
+            CollectionPath : 'AgegroupVH',
+
+            Parameters : [
+
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : ageGroup,
+                    ValueListProperty : 'code'
+                },
+
+                {
+                    $Type : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'text'
+                }
+
+            ]
+        }
+    )
+
+};

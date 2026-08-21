@@ -6,7 +6,7 @@ entity GenderVH {
 }
 
 entity AgeGroupVH {
-    key code : String(1);
+    key code : String;
     text : String;
 }
 
@@ -16,8 +16,8 @@ type allgenders : String enum {
 }
 
 type booksagegroup : String enum {
-    Kids  = 'Kids';
-    Adult = 'Adult';
+    Kids  = 'K';
+    Adult = 'A';
 }
 
 entity Books {
