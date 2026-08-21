@@ -1,0 +1,187 @@
+{
+  "_version": "1.86.0",
+  "sap.app": {
+    "id": "bookscapmodatav4",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.31.0",
+      "toolsId": "21a86f5d-74d6-4769-bcad-910910978990"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/library/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "semobj_booksodatav4-display": {
+          "semanticObject": "semobj_booksodatav4",
+          "action": "display",
+          "title": "{{semobj_booksodatav4-display.flpTitle}}",
+          "subTitle": "{{semobj_booksodatav4-display.flpSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.151.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "bookscapmodatav4.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "BooksSetList",
+          "target": "BooksSetList"
+        },
+        {
+          "pattern": "BooksSet({key}):?query:",
+          "name": "BooksSetObjectPage",
+          "target": "BooksSetObjectPage"
+        },
+        {
+          "pattern": "BooksSet({key})/chapters({key2}):?query:",
+          "name": "ChaptersObjectPage",
+          "target": "ChaptersObjectPage"
+        }
+      ],
+      "targets": {
+        "BooksSetList": {
+          "type": "Component",
+          "id": "BooksSetList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/BooksSet",
+              "variantManagement": "Page",
+              "navigation": {
+                "BooksSet": {
+                  "detail": {
+                    "route": "BooksSetObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "BooksSetObjectPage": {
+          "type": "Component",
+          "id": "BooksSetObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/BooksSet",
+              "navigation": {
+                "chapters": {
+                  "detail": {
+                    "route": "ChaptersObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "ChaptersObjectPage": {
+          "type": "Component",
+          "id": "ChaptersObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/BooksSet/chapters"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  },
+  "sap.fe": {
+    "app": {
+      "enableLazyLoading": true
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "bookscapmodatav4"
+  }
+}

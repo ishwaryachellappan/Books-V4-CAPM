@@ -1,0 +1,33 @@
+{
+  "dependencies": {
+    "@cap-js/hana": "^3",
+    "@cap-js/sqlite": "^3.0.2",
+    "@sap/cds": "^10.0.6",
+    "node.js": "^0.0.1-security"
+  },
+  "devDependencies": {
+    "@sap/cds-dk": "^9",
+    "cds-plugin-ui5": "^0.17.0",
+    "mbt": "^1.2.49",
+    "rimraf": "^5.0.5"
+  },
+  "cds": {
+    "requires": {
+      "[production]": {
+        "db": "hana"
+      }
+    }
+  },
+  "workspaces": [
+    "app/*"
+  ],
+  "scripts": {
+    "watch-bookscapmodatav4": "cds watch --open bookscapmodatav4/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "undeploy": "cf undeploy bookscapmodatav4 --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+  },
+  "sapux": [
+    "app/bookscapmodatav4"
+  ]
+}
